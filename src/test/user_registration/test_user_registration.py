@@ -57,3 +57,17 @@ class TestUserRegistration:
         user_registration = UserRegistration()
         result = user_registration.get_input(user_input_type, user_input_data)
         assert result == expected
+
+    @pytest.mark.parametrize("user_input_type, user_input_data, expected", [
+        ("password", "Abcdefghi", False),
+        ("password", "12345678", False),
+        ("password", "Abcdefghi", False),
+        ("password", "Abcde123", False),
+        ("password", "Ab@12", False),
+        ("password", "Abcde@123", True),
+        ("password", "Abcde@@12", False)
+    ])
+    def test_given_password_when_valid_or_invalid_returns_result(self, user_input_type, user_input_data, expected):
+        user_registration = UserRegistration()
+        result = user_registration.get_input(user_input_type, user_input_data)
+        assert result == expected

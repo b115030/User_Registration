@@ -1,6 +1,7 @@
 from src.main.user_registration.name import Name
 from src.main.user_registration.email import Email
 from src.main.user_registration.phone import Phone
+from src.main.user_registration.password import Password
 
 
 class RegistrationFactory:
@@ -8,6 +9,7 @@ class RegistrationFactory:
         switcher = {
             "name": Name(),
             "email": Email(),
-            "phone": Phone()
+            "phone": Phone(),
+            "password": Password()
         }
         return switcher.get(input_type)
