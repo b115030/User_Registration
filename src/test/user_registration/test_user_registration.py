@@ -14,8 +14,8 @@ class TestUserRegistration:
     ])
     def test_given_first_name_when_valid_should_return_true(self, user_input_type, user_input_data, expected):
         user_registration = UserRegistration()
-        is_valid = user_registration.get_input(user_input_type, user_input_data)
-        assert is_valid == expected
+        result = user_registration.get_input(user_input_type, user_input_data)
+        assert result == expected
 
     @pytest.mark.parametrize("user_input_type, user_input_data, expected", [
         ("email", "abc@yahoo.com", True),
@@ -43,5 +43,17 @@ class TestUserRegistration:
     ])
     def test_given_email_when_valid_or_invalid_returns_result(self, user_input_type, user_input_data, expected):
         user_registration = UserRegistration()
-        is_valid = user_registration.get_input(user_input_type, user_input_data)
-        assert is_valid == expected
+        result = user_registration.get_input(user_input_type, user_input_data)
+        assert result == expected
+
+    @pytest.mark.parametrize("user_input_type, user_input_data, expected", [
+        ("phone", "91 9876541123", True),
+        ("phone", "911 987456321", False),
+        ("phone", "919438268759", False),
+        ("phone", "91 98745632", False),
+        ("phone", "91 9432658745692", False)
+    ])
+    def test_given_phone_no_when_valid_or_invalid_returns_result(self, user_input_type, user_input_data, expected):
+        user_registration = UserRegistration()
+        result = user_registration.get_input(user_input_type, user_input_data)
+        assert result == expected
