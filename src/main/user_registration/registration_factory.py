@@ -5,7 +5,21 @@ from src.main.user_registration.password import Password
 
 
 class RegistrationFactory:
+    '''
+
+    This class takes in the object type and returns the object of respective type
+    Methods:
+        return_object
+    '''
+
     def return_object(self, input_type):
+        '''
+
+        :param input_type: type of user detail
+        :type input_type: str
+        :return: object of respective classes
+        :rtype: object
+        '''
         switcher = {
             "name": Name(),
             "email": Email(),
